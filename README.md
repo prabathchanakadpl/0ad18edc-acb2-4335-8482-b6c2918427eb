@@ -6,12 +6,19 @@ Clone the project and follow these commands in order to run the project:
 
 1. ** Change the dir path to project folder and open the terminal **
 
-2. ** Install all PHP dependencies **
+2. ** Copy the `.env.example` file to `.env`**
+
+     ```bash
+     cp .env.example .env
+     php artisan key:generate
+     ```
+
+3. ** Install all PHP dependencies **
      ```bash
     composer install
     ```
 
-3. ** Now run following Laravel console command in the terminal **
+4. ** Now run following Laravel console command in the terminal **
     
    ```bash
     php artisan report:generate
@@ -38,4 +45,12 @@ Clone the project and follow these commands in order to run the project:
     php artisan report:generate student123 1
     php artisan report:generate --list
 
+    ```
+5. ** Run feature tests **
+     ```bash
+    php artisan test
+   
+    ./vendor/bin/phpunit tests/Feature/Services/GenerateReportCommandTest.php
+   
+    ./vendor/bin/phpunit tests/Feature/Services/GenerateReportCommandTest.php --filter <test_function_name>
     ```
