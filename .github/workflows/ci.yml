@@ -59,4 +59,9 @@ jobs:
 
       # Step 9: Run PHPUnit tests (FIXED SYNTAX)
       - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --colors=always
+        run: |
+          # Create test directories if they don't exist
+          mkdir -p tests/Unit tests/Feature
+
+          # Run tests from the main tests directory
+          vendor/bin/phpunit --colors=always tests/
