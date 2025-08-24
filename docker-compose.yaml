@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # PHP Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assessment-app
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/app/data  # Mount data directory
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    networks:
+      - assessment-network
+
+  # PHPUnit Test Service
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assessment-test
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    environment:
+      - APP_ENV=testing
+      - APP_DEBUG=true
+    command: ["php", "vendor/bin/phpunit"]
+    networks:
+      - assessment-network
+
+  # Development shell (for running artisan commands)
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assessment-shell
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    stdin_open: true
+    tty: true
+    command: ["bash"]
+    networks:
+      - assessment-network
+
+networks:
+  assessment-network:
+   driver: bridge
