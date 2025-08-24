@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Question;
-use App\Models\StudentResponse;
 use Throwable;
 use RuntimeException;
 use App\Models\Student;
+use App\Models\Question;
+use App\Models\StudentResponse;
 use Illuminate\Support\Facades\Log;
 
 class DataLoaderService
@@ -366,5 +366,17 @@ class DataLoaderService
         }
 
         return 'Assessment';
+    }
+
+    /**
+     * Clear loaded json data in memory
+     * @return void
+     */
+    public function clearCache(): void
+    {
+        $this->students = [];
+        $this->questions = [];
+        $this->studentResponses = [];
+        $this->dataLoaded = false;
     }
 }

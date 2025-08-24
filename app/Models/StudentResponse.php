@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use http\Exception\InvalidArgumentException;
 use Illuminate\Support\Arr;
+use http\Exception\InvalidArgumentException;
 
 class StudentResponse
 {
