@@ -59,4 +59,4 @@ jobs:
 
       # Step 9: Run PHPUnit tests (FIXED SYNTAX)
       - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --colors=always --verbose
+        run: vendor/bin/phpunit --colors=always
